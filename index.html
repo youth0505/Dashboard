@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A collection of data dashboards by Lingfei Zhu, starting with the Formula 1 Race Result Explorer."
+    />
+    <meta name="theme-color" content="#f5f4ef" />
+    <title>Dashboards — Lingfei Zhu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #171817;
+        --paper: #f5f4ef;
+        --violet: #cfc4f4;
+        --mint: #c9ebd5;
+        --mono: "DM Mono", monospace;
+        --display: "Archivo Black", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 5px;
+      }
+
+      .site-header {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1rem 2.4vw;
+        border-bottom: 1px solid var(--ink);
+        font: 0.58rem var(--mono);
+        letter-spacing: 0.06em;
+      }
+
+      .wordmark {
+        font: 1.2rem / 0.8 var(--display);
+        letter-spacing: -0.08em;
+      }
+
+      .site-header > a:last-child,
+      .site-header > span {
+        text-align: right;
+      }
+
+      main {
+        padding: 0 7vw;
+      }
+
+      .hero {
+        display: grid;
+        min-height: 440px;
+        grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
+        align-items: end;
+        gap: 2rem;
+        padding: 5rem 0 3.5rem;
+      }
+
+      .eyebrow,
+      .hero-note,
+      .section-label,
+      .dashboard-meta,
+      .dashboard-index,
+      .dashboard-cta,
+      .site-footer {
+        font-family: var(--mono);
+        letter-spacing: 0.06em;
+      }
+
+      .eyebrow,
+      .section-label {
+        font-size: 0.62rem;
+      }
+
+      h1 {
+        max-width: 900px;
+        margin: 2rem 0 1.5rem;
+        font: clamp(4.5rem, 12vw, 11rem) / 0.82 var(--display);
+        letter-spacing: -0.09em;
+      }
+
+      h1 span {
+        color: transparent;
+        -webkit-text-stroke: 2px var(--ink);
+      }
+
+      .hero-copy {
+        max-width: 34rem;
+        margin: 0;
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        line-height: 1.6;
+      }
+
+      .hero-note {
+        max-width: 250px;
+        justify-self: end;
+        padding-bottom: 0.25rem;
+        font-size: 0.68rem;
+        line-height: 1.8;
+      }
+
+      .hero-note strong {
+        display: block;
+        margin-bottom: 0.6rem;
+        font-size: 0.58rem;
+      }
+
+      .collection {
+        padding: 1.2rem 0 6rem;
+        border-top: 1px solid var(--ink);
+      }
+
+      .collection-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .collection-head h2 {
+        margin: 0;
+        font: 0.65rem var(--mono);
+        letter-spacing: 0.08em;
+      }
+
+      .collection-count {
+        font: 0.58rem var(--mono);
+        letter-spacing: 0.06em;
+      }
+
+      .dashboard-card {
+        display: grid;
+        min-height: 360px;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid var(--ink);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .dashboard-card:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+
+      .card-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: clamp(1.5rem, 4vw, 3.5rem);
+      }
+
+      .dashboard-meta {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.56rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .status::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #738c69;
+        content: "";
+      }
+
+      .card-copy h3 {
+        margin: auto 0 1rem;
+        font: clamp(2.6rem, 5vw, 5.2rem) / 0.9 var(--display);
+        letter-spacing: -0.08em;
+      }
+
+      .card-copy h3 span {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--ink);
+      }
+
+      .card-description {
+        max-width: 30rem;
+        margin: 0 0 2rem;
+        line-height: 1.65;
+      }
+
+      .dashboard-cta {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: auto;
+        padding-top: 1rem;
+        border-top: 1px solid var(--ink);
+        font-size: 0.62rem;
+        font-weight: 500;
+      }
+
+      .card-visual {
+        display: flex;
+        min-height: 280px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(1.2rem, 3vw, 2.5rem);
+        background: var(--violet);
+      }
+
+      .visual-top,
+      .visual-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font: 0.56rem var(--mono);
+        letter-spacing: 0.06em;
+      }
+
+      .visual-chart {
+        display: flex;
+        height: 145px;
+        align-items: end;
+        gap: clamp(0.5rem, 2vw, 1.4rem);
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--ink);
+      }
+
+      .visual-chart i {
+        flex: 1;
+        min-width: 12px;
+        background: var(--mint);
+        border: 1px solid var(--ink);
+      }
+
+      .visual-chart i:nth-child(1) {
+        height: 44%;
+      }
+
+      .visual-chart i:nth-child(2) {
+        height: 70%;
+      }
+
+      .visual-chart i:nth-child(3) {
+        height: 55%;
+      }
+
+      .visual-chart i:nth-child(4) {
+        height: 88%;
+      }
+
+      .visual-chart i:nth-child(5) {
+        height: 63%;
+      }
+
+      .site-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.2rem 2.4vw;
+        border-top: 1px solid var(--ink);
+        font-size: 0.56rem;
+      }
+
+      @media (max-width: 760px) {
+        .site-header {
+          min-height: 64px;
+          padding-inline: 18px;
+        }
+
+        .site-header > span {
+          display: none;
+        }
+
+        main {
+          padding-inline: 20px;
+        }
+
+        .hero {
+          min-height: auto;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding: 5rem 0 3rem;
+        }
+
+        h1 {
+          margin: 2rem 0 1rem;
+          font-size: clamp(4rem, 19vw, 7rem);
+        }
+
+        .hero-note {
+          justify-self: start;
+        }
+
+        .collection {
+          padding-bottom: 4rem;
+        }
+
+        .dashboard-card {
+          grid-template-columns: 1fr;
+        }
+
+        .card-copy {
+          min-height: 330px;
+        }
+
+        .card-visual {
+          min-height: 250px;
+        }
+
+        .site-footer {
+          flex-wrap: wrap;
+          padding-inline: 20px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="https://youth0505.github.io/Portfolio/" aria-label="Lingfei Zhu Portfolio">
+        LINGFEI<br />ZHU
+      </a>
+      <span>DATA / VISUALIZATION / DECISIONS</span>
+      <a href="https://youth0505.github.io/Portfolio/">BACK TO PORTFOLIO ↗</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">/ DASHBOARD COLLECTION · 01—∞</p>
+          <h1 id="page-title">DATA<br /><span>IN VIEW.</span></h1>
+          <p class="hero-copy">
+            Interactive explorations that turn complex data into clearer ways to compare, understand,
+            and decide.
+          </p>
+        </div>
+        <aside class="hero-note">
+          <strong>AN OPEN COLLECTION</strong>
+          A growing home for dashboards built around real questions, useful signals, and considered
+          visual design.
+        </aside>
+      </section>
+
+      <section class="collection" aria-labelledby="collection-title">
+        <div class="collection-head">
+          <h2 id="collection-title">AVAILABLE DASHBOARDS</h2>
+          <span class="collection-count">01 / 01 LIVE</span>
+        </div>
+        <a class="dashboard-card" href="f1-dashboard.html">
+          <div class="card-copy">
+            <div class="dashboard-meta">
+              <span>01 / MOTORSPORT</span>
+              <span class="status">CONCEPT</span>
+            </div>
+            <h3>RACE<br /><span>RESULTS.</span></h3>
+            <p class="card-description">
+              Explore the shape of a Formula 1 season through driver points, grid position, and
+              race-by-race results.
+            </p>
+            <span class="dashboard-cta"><span>OPEN F1 DASHBOARD</span><span>↗</span></span>
+          </div>
+          <div class="card-visual" aria-hidden="true">
+            <div class="visual-top"><span>RACE RESULT / EXPLORER</span><span>F1 · 2024</span></div>
+            <div class="visual-chart"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="visual-bottom"><span>POINTS BY DRIVER</span><span>01—24 ROUNDS</span></div>
+          </div>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="year">2026</span> LINGFEI ZHU</span>
+      <span>BUILT TO MAKE DATA CLEARER.</span>
+      <a href="https://youth0505.github.io/Portfolio/#project">PORTFOLIO / F1 PROJECT ↗</a>
+    </footer>
+  </body>
+</html>

@@ -1,9 +1,10 @@
-# Formula 1 Dashboard
+# Dashboard Collection
 
-Static concept page for the DSCI 510 Formula 1 race-result dashboard.
+The root page is the home and directory for the dashboard collection.
 
-- Main page and its embedded styles: [`f1-dashboard.html`](f1-dashboard.html)
+- Collection home: [`index.html`](index.html)
+- Formula 1 concept dashboard: [`f1-dashboard.html`](f1-dashboard.html)
 - Maintenance instructions: [`MAINTENANCE.md`](MAINTENANCE.md)
 - Portfolio entry: [Lingfei Zhu Portfolio](https://youth0505.github.io/Portfolio/)
 
-The current page is a static concept preview. Its selectors, KPIs, chart shapes, and table values are not connected to a live data source.
+The F1 page is a static concept preview. Its selectors, KPIs, chart shapes, and table values are not connected to a live data source. New dashboards should be added to the collection home and linked to their own standalone pages.
