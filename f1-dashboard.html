@@ -36,6 +36,22 @@
         text-decoration: none;
       }
 
+      .language-toggle {
+        flex: 0 0 auto;
+        padding: 0.55rem 0.8rem;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        font: 0.58rem var(--mono);
+        letter-spacing: 0.06em;
+        cursor: pointer;
+      }
+
+      .language-toggle:hover {
+        background: var(--v);
+      }
+
       header {
         display: flex;
         justify-content: space-between;
@@ -331,6 +347,7 @@
         LINGFEI<br />ZHU
       </a>
       <span>DSCI 510 / FORMULA 1 DATA</span>
+      <button class="language-toggle" type="button" data-language-toggle aria-label="Switch to Chinese">中文</button>
       <a href="https://youth0505.github.io/Portfolio/#project">BACK TO PORTFOLIO ↗</a>
     </header>
 
@@ -459,5 +476,6 @@
         </article>
       </section>
     </main>
+    <script src="language.js" defer></script>
   </body>
 </html>

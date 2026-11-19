@@ -46,6 +46,22 @@
         outline-offset: 5px;
       }
 
+      .language-toggle {
+        flex: 0 0 auto;
+        padding: 0.55rem 0.8rem;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        font: 0.58rem var(--mono);
+        letter-spacing: 0.06em;
+        cursor: pointer;
+      }
+
+      .language-toggle:hover {
+        background: var(--violet);
+      }
+
       .site-header {
         display: flex;
         min-height: 72px;
@@ -355,6 +371,7 @@
         LINGFEI<br />ZHU
       </a>
       <span>DATA / VISUALIZATION / DECISIONS</span>
+      <button class="language-toggle" type="button" data-language-toggle aria-label="Switch to Chinese">中文</button>
       <a href="https://youth0505.github.io/Portfolio/">BACK TO PORTFOLIO ↗</a>
     </header>
 
@@ -407,5 +424,6 @@
       <span>BUILT TO MAKE DATA CLEARER.</span>
       <a href="https://youth0505.github.io/Portfolio/#project">PORTFOLIO / F1 PROJECT ↗</a>
     </footer>
+    <script src="language.js" defer></script>
   </body>
 </html>
